@@ -1,0 +1,397 @@
+ibexa:
+    system:
+        default:
+            content_type:
+                # Define content type groups
+                groups:
+                    editorial:
+                        name: Editorial
+                    page_structure:
+                        name: Page Structure
+                    system:
+                        name: System
+
+                # News Article Content Type
+                news:
+                    name: News
+                    identifier: news
+                    content_type_group: editorial
+                    name_schema: '<title>'
+                    url_alias_schema: '<title>'
+                    is_container: false
+                    default_sort_field: published
+                    default_sort_order: DESC
+                    default_always_available: false
+                    fields:
+                        title:
+                            name: Title
+                            identifier: title
+                            type: ezstring
+                            required: true
+                            searchable: true
+                            translatable: true
+                            category: content
+                            position: 10
+                        
+                        summary:
+                            name: Summary
+                            identifier: summary
+                            type: eztext
+                            required: false
+                            searchable: true
+                            translatable: true
+                            category: content
+                            position: 20
+                        
+                        body:
+                            name: Body
+                            identifier: body
+                            type: ezrichtext
+                            required: true
+                            searchable: true
+                            translatable: true
+                            category: content
+                            position: 30
+                        
+                        featured_image:
+                            name: Featured Image
+                            identifier: featured_image
+                            type: ezimage
+                            required: false
+                            searchable: false
+                            translatable: false
+                            category: media
+                            position: 40
+                        
+                        publication_date:
+                            name: Publication Date
+                            identifier: publication_date
+                            type: ezdatetime
+                            required: true
+                            searchable: true
+                            translatable: false
+                            category: metadata
+                            position: 50
+                            default_value: 'now'
+                        
+                        author:
+                            name: Author
+                            identifier: author
+                            type: ezobjectrelation
+                            required: false
+                            searchable: false
+                            translatable: false
+                            category: metadata
+                            position: 60
+                            field_settings:
+                                selection_root: 12  # Users location
+                                selection_content_types: ['user']
+                        
+                        categories:
+                            name: Categories
+                            identifier: categories
+                            type: ezobjectrelationlist
+                            required: false
+                            searchable: true
+                            translatable: false
+                            category: metadata
+                            position: 70
+                        
+                        seo_title:
+                            name: SEO Meta Title
+                            identifier: seo_title
+                            type: ezstring
+                            required: false
+                            searchable: false
+                            translatable: true
+                            category: seo
+                            position: 80
+                            validator_configuration:
+                                StringLengthValidator:
+                                    maxStringLength: 60
+                        
+                        seo_description:
+                            name: SEO Meta Description
+                            identifier: seo_description
+                            type: eztext
+                            required: false
+                            searchable: false
+                            translatable: true
+                            category: seo
+                            position: 90
+                            validator_configuration:
+                                StringLengthValidator:
+                                    maxStringLength: 160
+
+                # Insights Article Content Type
+                insights:
+                    name: Insights
+                    identifier: insights
+                    content_type_group: editorial
+                    name_schema: '<title>'
+                    url_alias_schema: 'insights/<title>'
+                    is_container: false
+                    default_sort_field: published
+                    default_sort_order: DESC
+                    default_always_available: false
+                    fields:
+                        title:
+                            name: Title
+                            identifier: title
+                            type: ezstring
+                            required: true
+                            searchable: true
+                            translatable: true
+                            category: content
+                            position: 10
+                        
+                        subtitle:
+                            name: Subtitle
+                            identifier: subtitle
+                            type: ezstring
+                            required: false
+                            searchable: true
+                            translatable: true
+                            category: content
+                            position: 20
+                        
+                        introduction:
+                            name: Introduction
+                            identifier: introduction
+                            type: ezrichtext
+                            required: false
+                            searchable: true
+                            translatable: true
+                            category: content
+                            position: 30
+                        
+                        body:
+                            name: Body
+                            identifier: body
+                            type: ezrichtext
+                            required: true
+                            searchable: true
+                            translatable: true
+                            category: content
+                            position: 40
+                        
+                        featured_image:
+                            name: Featured Image
+                            identifier: featured_image
+                            type: ezimage
+                            required: false
+                            searchable: false
+                            translatable: false
+                            category: media
+                            position: 50
+                        
+                        gallery:
+                            name: Gallery
+                            identifier: gallery
+                            type: ezimageasset
+                            required: false
+                            searchable: false
+                            translatable: false
+                            category: media
+                            position: 60
+                        
+                        publication_date:
+                            name: Publication Date
+                            identifier: publication_date
+                            type: ezdatetime
+                            required: true
+                            searchable: true
+                            translatable: false
+                            category: metadata
+                            position: 70
+                            default_value: 'now'
+                        
+                        authors:
+                            name: Authors
+                            identifier: authors
+                            type: ezobjectrelationlist
+                            required: false
+                            searchable: false
+                            translatable: false
+                            category: metadata
+                            position: 80
+                            field_settings:
+                                selection_content_types: ['user']
+                        
+                        topics:
+                            name: Topics
+                            identifier: topics
+                            type: ezobjectrelationlist
+                            required: false
+                            searchable: true
+                            translatable: false
+                            category: metadata
+                            position: 90
+                        
+                        related_insights:
+                            name: Related Insights
+                            identifier: related_insights
+                            type: ezobjectrelationlist
+                            required: false
+                            searchable: false
+                            translatable: false
+                            category: relations
+                            position: 100
+                            field_settings:
+                                selection_content_types: ['insights']
+                        
+                        seo_title:
+                            name: SEO Meta Title
+                            identifier: seo_title
+                            type: ezstring
+                            required: false
+                            searchable: false
+                            translatable: true
+                            category: seo
+                            position: 110
+                            validator_configuration:
+                                StringLengthValidator:
+                                    maxStringLength: 60
+                        
+                        seo_description:
+                            name: SEO Meta Description
+                            identifier: seo_description
+                            type: eztext
+                            required: false
+                            searchable: false
+                            translatable: true
+                            category: seo
+                            position: 120
+                            validator_configuration:
+                                StringLengthValidator:
+                                    maxStringLength: 160
+
+                # Redirect Content Type
+                redirect:
+                    name: Redirect
+                    identifier: redirect
+                    content_type_group: system
+                    name_schema: '<source_url> → <target_url>'
+                    url_alias_schema: 'redirect/<source_url>'
+                    is_container: false
+                    default_sort_field: name
+                    default_sort_order: ASC
+                    default_always_available: true
+                    fields:
+                        source_url:
+                            name: Source URL
+                            identifier: source_url
+                            type: ezstring
+                            required: true
+                            searchable: true
+                            translatable: false
+                            category: content
+                            position: 10
+                            field_settings:
+                                textRows: 1
+                        
+                        target_url:
+                            name: Target URL
+                            identifier: target_url
+                            type: ezurl
+                            required: true
+                            searchable: false
+                            translatable: false
+                            category: content
+                            position: 20
+                        
+                        redirect_type:
+                            name: Redirect Type
+                            identifier: redirect_type
+                            type: ezselection
+                            required: true
+                            searchable: false
+                            translatable: false
+                            category: content
+                            position: 30
+                            field_settings:
+                                is_multiple: false
+                                options:
+                                    - 301 Permanent
+                                    - 302 Temporary
+                            default_value:
+                                selection: [0]  # 301 Permanent
+                        
+                        active:
+                            name: Active
+                            identifier: active
+                            type: ezboolean
+                            required: true
+                            searchable: true
+                            translatable: false
+                            category: content
+                            position: 40
+                            default_value: true
+                        
+                        notes:
+                            name: Notes
+                            identifier: notes
+                            type: eztext
+                            required: false
+                            searchable: false
+                            translatable: false
+                            category: content
+                            position: 50
+
+                # Landing Page Content Type
+                landing_page:
+                    name: Landing Page
+                    identifier: landing_page
+                    content_type_group: page_structure
+                    name_schema: '<title>'
+                    url_alias_schema: '<title>'
+                    is_container: true
+                    default_sort_field: name
+                    default_sort_order: ASC
+                    default_always_available: false
+                    fields:
+                        title:
+                            name: Title
+                            identifier: title
+                            type: ezstring
+                            required: true
+                            searchable: true
+                            translatable: true
+                            category: content
+                            position: 10
+                        
+                        page:
+                            name: Page
+                            identifier: page
+                            type: ezlandingpage
+                            required: true
+                            searchable: false
+                            translatable: true
+                            category: content
+                            position: 20
+                        
+                        seo_title:
+                            name: SEO Meta Title
+                            identifier: seo_title
+                            type: ezstring
+                            required: false
+                            searchable: false
+                            translatable: true
+                            category: seo
+                            position: 30
+                            validator_configuration:
+                                StringLengthValidator:
+                                    maxStringLength: 60
+                        
+                        seo_description:
+                            name: SEO Meta Description
+                            identifier: seo_description
+                            type: eztext
+                            required: false
+                            searchable: false
+                            translatable: true
+                            category: seo
+                            position: 40
+                            validator_configuration:
+                                StringLengthValidator:
+                                    maxStringLength: 160

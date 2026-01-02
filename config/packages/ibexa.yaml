@@ -1,0 +1,130 @@
+ibexa:
+    repositories:
+        default:
+            storage:
+                engine: legacy
+                connection: default
+            search:
+                engine: solr
+                connection: default
+    siteaccess:
+        default_siteaccess: global-en
+        list:
+            - global-en
+            - my-en
+            - th-en
+            - th-th
+            - admin
+        groups:
+            # All public sites
+            site_group:
+                - global-en
+                - my-en
+                - th-en
+                - th-th
+            # Global sites
+            global_group:
+                - global-en
+            # Malaysia sites
+            malaysia_group:
+                - my-en
+            # Thailand sites (all languages)
+            thailand_group:
+                - th-en
+                - th-th
+            # Admin group
+            admin_group:
+                - admin
+        match:
+            # Map\URI for locale-based routing
+            Compound\URI:
+                # Global English
+                global-en:
+                    match: global-en
+                    siteaccess: global-en
+                # Malaysia English
+                my-en:
+                    match: my-en
+                    siteaccess: my-en
+                # Thailand English
+                th-en:
+                    match: th-en
+                    siteaccess: th-en
+                # Thailand Thai
+                th-th:
+                    match: th-th
+                    siteaccess: th-th
+                # Admin routes
+                admin:
+                    match: admin
+                    siteaccess: admin
+            # Fallback to global for root
+            default_siteaccess: global-en
+    system:
+        # Default configuration for all siteaccesses
+        default:
+            design: standard
+            content:
+                tree_root:
+                    location_id: 2
+        
+        # Global English
+        global-en:
+            design: standard
+            languages:
+                - eng-GB
+            content:
+                tree_root:
+                    location_id: 2
+        
+        # Malaysia English
+        my-en:
+            design: standard
+            languages:
+                - eng-MY
+                - eng-GB
+            content:
+                tree_root:
+                    location_id: 2
+        
+        # Thailand English
+        th-en:
+            design: standard
+            languages:
+                - eng-TH
+                - eng-GB
+            content:
+                tree_root:
+                    location_id: 2
+        
+        # Thailand Thai
+        th-th:
+            design: standard
+            languages:
+                - tha-TH
+                - eng-TH
+                - eng-GB
+            content:
+                tree_root:
+                    location_id: 2
+        
+        # Admin back-office
+        admin:
+            design: admin
+            languages:
+                - eng-GB
+            content:
+                tree_root:
+                    location_id: 2
+
+ibexa_solr:
+    endpoints:
+        endpoint0:
+            dsn: '%env(SOLR_DSN)%'
+            core: '%env(SOLR_CORE)%'
+    connections:
+        default:
+            entry_endpoints:
+                - endpoint0
+            mapping:
+                default: endpoint0

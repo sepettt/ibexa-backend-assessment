@@ -1,0 +1,14 @@
+services:
+    # Provide a null implementation for legacy search indexer gateway
+    # since we're using Solr exclusively
+    Ibexa\Contracts\Core\Search\Content\IndexerGateway:
+        synthetic: true
+    
+    # Provide synthetic legacy search connection
+    ibexa.api.search_engine.legacy.connection:
+        synthetic: true
+    
+    # SwiftMailer alias for backward compatibility
+    Swift_Mailer:
+        alias: swiftmailer.mailer.default
+        public: false

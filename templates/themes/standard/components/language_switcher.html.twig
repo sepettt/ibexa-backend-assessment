@@ -1,0 +1,82 @@
+{#
+    Language Switcher Component
+    
+    Usage:
+    {% include '@ibexadesign/components/language_switcher.html.twig' with {
+        content: content,
+        location: location
+    } %}
+#}
+
+{% set languages = get_available_languages(content, location) %}
+{% set languagesByMarket = get_languages_by_market(content, location) %}
+
+<nav class="language-switcher" aria-label="Language switcher">
+    <div class="language-switcher__dropdown">
+        {% set currentLanguage = null %}
+        {% for locale, lang in languages %}
+            {% if lang.current %}
+                {% set currentLanguage = lang %}
+            {% endif %}
+        {% endfor %}
+
+        <button class="language-switcher__toggle" 
+                type="button" 
+                aria-expanded="false"
+                aria-haspopup="true">
+            <span class="language-switcher__current">
+                {{ currentLanguage.displayName|default('Select Language') }}
+            </span>
+            <svg class="language-switcher__icon" width="16" height="16" aria-hidden="true">
+                <use xlink:href="#icon-chevron-down"></use>
+            </svg>
+        </button>
+
+        <div class="language-switcher__menu" role="menu">
+            {% for market, marketLanguages in languagesByMarket %}
+                <div class="language-switcher__market">
+                    <h3 class="language-switcher__market-title">
+                        {% if market == 'global' %}
+                            Global
+                        {% elseif market == 'sg' %}
+                            Singapore
+                        {% elseif market == 'my' %}
+                            Malaysia
+                        {% endif %}
+                    </h3>
+
+                    <ul class="language-switcher__list">
+                        {% for locale, lang in marketLanguages %}
+                            <li class="language-switcher__item">
+                                {% if lang.current %}
+                                    <span class="language-switcher__link language-switcher__link--current" 
+                                          aria-current="true">
+                                        {{ lang.displayName }}
+                                        {% if not lang.available %}
+                                            <span class="language-switcher__badge">Fallback</span>
+                                        {% endif %}
+                                    </span>
+                                {% elseif lang.available %}
+                                    <a href="{{ lang.url }}" 
+                                       class="language-switcher__link"
+                                       hreflang="{{ locale }}"
+                                       role="menuitem">
+                                        {{ lang.displayName }}
+                                    </a>
+                                {% else %}
+                                    <span class="language-switcher__link language-switcher__link--unavailable"
+                                          title="Translation not available">
+                                        {{ lang.displayName }}
+                                        <span class="language-switcher__badge language-switcher__badge--unavailable">
+                                            Not available
+                                        </span>
+                                    </span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</nav>

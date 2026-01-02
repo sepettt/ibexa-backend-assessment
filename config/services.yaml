@@ -1,0 +1,18 @@
+imports:
+    - { resource: services_parameters.yaml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Command\:
+        resource: '../src/Command/'
+        tags: ['console.command']

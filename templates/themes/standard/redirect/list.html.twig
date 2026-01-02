@@ -1,0 +1,152 @@
+{% extends '@standard/pagelayout.html.twig' %}
+
+{% block content %}
+<div class="redirects-list">
+    <h1>URL Redirects Management</h1>
+    
+    <p class="total-count">Total redirects: {{ total }}</p>
+    
+    {% if redirects is empty %}
+        <div class="empty-state">
+            <p>No redirects configured yet.</p>
+            <p>Create Redirect content items to manage URL redirects.</p>
+        </div>
+    {% else %}
+        <table class="redirects-table">
+            <thead>
+                <tr>
+                    <th>Source URL</th>
+                    <th>Target URL</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Published</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for redirect in redirects %}
+                <tr class="{{ redirect.active ? 'active' : 'inactive' }}">
+                    <td class="source-url">
+                        <code>{{ redirect.source_url }}</code>
+                    </td>
+                    <td class="target-url">
+                        <code>{{ redirect.target_url }}</code>
+                    </td>
+                    <td class="redirect-type">
+                        <span class="badge badge-{{ redirect.redirect_type == 301 ? 'permanent' : 'temporary' }}">
+                            {{ redirect.redirect_type == 301 ? '301 Permanent' : '302 Temporary' }}
+                        </span>
+                    </td>
+                    <td class="status">
+                        <span class="badge badge-{{ redirect.active ? 'success' : 'inactive' }}">
+                            {{ redirect.active ? 'Active' : 'Inactive' }}
+                        </span>
+                    </td>
+                    <td class="published-date">
+                        {{ redirect.published|format_datetime('medium', 'short') }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+
+<style>
+    .redirects-list {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    
+    .redirects-list h1 {
+        margin-bottom: 1rem;
+        color: #333;
+    }
+    
+    .total-count {
+        color: #666;
+        margin-bottom: 1.5rem;
+    }
+    
+    .empty-state {
+        padding: 3rem;
+        text-align: center;
+        background: #f5f5f5;
+        border-radius: 8px;
+        color: #666;
+    }
+    
+    .redirects-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .redirects-table th {
+        background: #f8f9fa;
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+    }
+    
+    .redirects-table td {
+        padding: 1rem;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .redirects-table tr:last-child td {
+        border-bottom: none;
+    }
+    
+    .redirects-table tr.inactive {
+        opacity: 0.6;
+        background: #f8f9fa;
+    }
+    
+    .redirects-table code {
+        background: #f1f3f5;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.9em;
+        font-family: 'Monaco', 'Courier New', monospace;
+    }
+    
+    .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.85em;
+        font-weight: 500;
+    }
+    
+    .badge-permanent {
+        background: #d1ecf1;
+        color: #0c5460;
+    }
+    
+    .badge-temporary {
+        background: #fff3cd;
+        color: #856404;
+    }
+    
+    .badge-success {
+        background: #d4edda;
+        color: #155724;
+    }
+    
+    .badge-inactive {
+        background: #e2e3e5;
+        color: #6c757d;
+    }
+    
+    .published-date {
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,49 @@
+# Routes are automatically imported by Ibexa bundles
+
+# Ibexa Admin UI routes
+ibexa_admin_ui:
+    resource: '@IbexaAdminUiBundle/Resources/config/routing.yaml'
+    prefix: /admin
+
+# Admin root redirect
+admin_root:
+    path: /admin
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        route: ibexa.dashboard
+        permanent: false
+
+# Ibexa User routes
+ibexa_user:
+    resource: '@IbexaUserBundle/Resources/config/routing.yaml'
+
+# Authentication routes
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
+# News routes
+app_news_list:
+    path: /news
+    controller: App\Controller\NewsController::listAction
+    methods: [GET]
+
+app_news_view:
+    path: /news/{slug}
+    controller: App\Controller\NewsController::viewAction
+    methods: [GET]
+    requirements:
+        slug: .+
+
+# Redirect routes
+app_redirect_list:
+    path: /redirects
+    controller: App\Controller\RedirectController::listRedirects
+    methods: [GET]
+

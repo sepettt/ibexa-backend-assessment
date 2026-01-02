@@ -1,0 +1,5 @@
+parameters:
+    search_engine: '%env(SEARCH_ENGINE)%'
+    locale: 'en'
+    locale_fallback: 'en'
+    app.locales: 'en'

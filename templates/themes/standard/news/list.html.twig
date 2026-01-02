@@ -1,0 +1,22 @@
+{% extends "@standard/pagelayout.html.twig" %}
+
+{% block title %}News{% endblock %}
+
+{% block content %}
+    <h1>News</h1>
+    
+    {% if articles is defined and articles|length > 0 %}
+        <div class="news-list">
+            {% for hit in articles %}
+                {% set article = hit.valueObject %}
+                <article class="news-item">
+                    <h2>{{ ez_content_name(article) }}</h2>
+                    <p>{{ article.publishedDate|format_datetime }}</p>
+                </article>
+            {% endfor %}
+        </div>
+        <p>Total articles: {{ totalCount }}</p>
+    {% else %}
+        <p>No news articles found yet. Create some content in the admin interface!</p>
+    {% endif %}
+{% endblock %}

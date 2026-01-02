@@ -1,0 +1,45 @@
+<?php
+
+return [
+    Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
+    Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
+    Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
+    Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
+    Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
+    Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
+    Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
+    
+    // Ibexa Bundles
+    Ibexa\Bundle\Core\IbexaCoreBundle::class => ['all' => true],
+    Ibexa\Bundle\LegacySearchEngine\IbexaLegacySearchEngineBundle::class => ['all' => true],
+    Ibexa\Bundle\Solr\IbexaSolrBundle::class => ['all' => true],
+    Ibexa\Bundle\DesignEngine\IbexaDesignEngineBundle::class => ['all' => true],
+    Ibexa\Bundle\User\IbexaUserBundle::class => ['all' => true],
+    Ibexa\Bundle\Rest\IbexaRestBundle::class => ['all' => true],
+    Ibexa\Bundle\AdminUi\IbexaAdminUiBundle::class => ['all' => true],
+    Ibexa\Bundle\ContentForms\IbexaContentFormsBundle::class => ['all' => true],
+    Ibexa\Bundle\GraphQL\IbexaGraphQLBundle::class => ['all' => true],
+    Ibexa\Bundle\Search\IbexaSearchBundle::class => ['all' => true],
+    Ibexa\Bundle\SystemInfo\IbexaSystemInfoBundle::class => ['all' => true],
+    Ibexa\Bundle\Cron\IbexaCronBundle::class => ['all' => true],
+    Ibexa\Bundle\Notifications\IbexaNotificationsBundle::class => ['all' => true],
+    Ibexa\Bundle\FieldTypeRichText\IbexaFieldTypeRichTextBundle::class => ['all' => true],
+    Ibexa\Bundle\FieldTypeQuery\IbexaFieldTypeQueryBundle::class => ['all' => true],
+    Ibexa\Bundle\FieldTypeMatrix\IbexaFieldTypeMatrixBundle::class => ['all' => true],
+    Ibexa\Bundle\CorePersistence\IbexaCorePersistenceBundle::class => ['all' => true],
+    Ibexa\Bundle\TwigComponents\IbexaTwigComponentsBundle::class => ['all' => true],
+    
+    // Supporting bundles
+    Hautelook\TemplatedUriBundle\HautelookTemplatedUriBundle::class => ['all' => true],
+    FOS\HttpCacheBundle\FOSHttpCacheBundle::class => ['all' => true],
+    FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true],
+    Nelmio\CorsBundle\NelmioCorsBundle::class => ['all' => true],
+    Knp\Bundle\MenuBundle\KnpMenuBundle::class => ['all' => true],
+    Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
+    Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle::class => ['all' => true],
+    Oneup\FlysystemBundle\OneupFlysystemBundle::class => ['all' => true],
+    Overblog\GraphQLBundle\OverblogGraphQLBundle::class => ['all' => true],
+    Overblog\GraphiQLBundle\OverblogGraphiQLBundle::class => ['all' => true],
+    JMS\TranslationBundle\JMSTranslationBundle::class => ['all' => true],
+    Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true, 'test' => true],
+];

@@ -1,0 +1,7 @@
+ibexa_design_engine:
+    design_list:
+        standard: [standard]
+    
+twig:
+    paths:
+        '%kernel.project_dir%/templates/themes/standard': standard

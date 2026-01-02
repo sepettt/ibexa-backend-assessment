@@ -1,0 +1,23 @@
+services:
+  mailhog:
+    container_name: ddev-${DDEV_SITENAME}-mailhog
+    image: axllent/mailpit:latest
+    restart: "no"
+    ports:
+      - "1025"
+      - "8025"
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    environment:
+      - MP_SMTP_BIND_ADDR=0.0.0.0:1025
+      - MP_UI_BIND_ADDR=0.0.0.0:8025
+      - MP_MAX_MESSAGES=500
+    expose:
+      - "1025"
+      - "8025"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8025/api/v1/info"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

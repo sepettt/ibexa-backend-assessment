@@ -1,0 +1,6 @@
+webpack_encore:
+    output_path: '%kernel.project_dir%/public/build'
+    # Set to null when not using integrity hashes
+    crossorigin: 'anonymous'
+    # Preload assets
+    preload: true
