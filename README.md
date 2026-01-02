@@ -13,7 +13,7 @@ A production-ready multi-market, multi-language Ibexa DXP project with comprehen
 
 ### 1. Clone and Navigate
 ```bash
-cd /Users/imranhisham/Visual\ Code\ Studio\ Project/backend_assessment
+https://github.com/sepettt/ibexa-backend-assessment.git
 ```
 
 ### 2. Start DDEV
