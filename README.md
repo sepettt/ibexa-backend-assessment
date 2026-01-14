@@ -215,7 +215,22 @@ backend_assessment/
 ├── composer.json               # Dependencies
 └── README.md                   # Setup instructions
 ```
-## Common Issues & Solutions
+## Troubleshooting
+
+### Issue: "The path /var/www/html/src/Entity does not exist"
+**Cause**: Git doesn't track empty directories by default. If `.gitkeep` files are missing, empty directories won't be cloned.
+
+**Solution**: This has been fixed in the latest commit. Pull the latest changes:
+```bash
+git pull origin main
+ddev restart
+```
+
+If the issue persists, manually create the directory:
+```bash
+mkdir -p src/Entity
+ddev restart
+```
 
 ### Issue: "Ibexa license key is missing"
 **Solution**: Add your license key to `.env`:
@@ -229,6 +244,19 @@ IBEXA_LICENSE_KEY=your_license_key_here
 ddev stop
 # Stop conflicting services
 ddev start
+```
+
+### Issue: Cache clear fails during setup
+**Symptoms**: Error during `ddev start` or `composer install` when running `cache:clear`.
+
+**Solution**:
+```bash
+# Ensure all required directories exist
+mkdir -p src/Entity var/cache var/log var/sessions
+# Restart DDEV
+ddev restart
+# Or manually clear cache
+ddev exec bin/console cache:clear
 ```
 
 ### Issue: Database connection errors
