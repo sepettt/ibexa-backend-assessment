@@ -1,0 +1,11 @@
+ibexa_solr:
+    endpoints:
+        endpoint0:
+            dsn: '%env(SOLR_DSN)%'
+            core: '%env(SOLR_CORE)%'
+    connections:
+        default:
+            entry_endpoints:
+                - endpoint0
+            mapping:
+                default: endpoint0
